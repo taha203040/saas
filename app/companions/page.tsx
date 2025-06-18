@@ -1,9 +1,7 @@
-import React from 'react'
-
-function CompanionsCard() {
+function Companions() {
     return (
         <div>Companions</div>
     )
 }
 
-export default CompanionsCard
+export default Companions
