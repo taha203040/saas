@@ -36,8 +36,12 @@ const Page = () => {
         />
       </section>
       <section className="home-section">
+        <CompanionList
+          title="Some Title"
+          companions={recentSessions}
+          classNames="w-2/3 max-lg:w-full"
+        />
         <Cta />
-        <CompanionList title="Some Title" companions={recentSessions} classNames="w-2/3 max-lg:w-full" />
       </section>
     </main>
   );

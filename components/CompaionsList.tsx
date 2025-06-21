@@ -9,8 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
+import { cn, getSubjectColor } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 interface CompanionListProps {
   title: string;
   companions?: Companion[];
@@ -22,9 +23,6 @@ const CompanionList = ({
   companions,
   classNames,
 }: CompanionListProps) => {
-  companions?.map((companion)=>{
-    console.log(companion)
-  })
   return (
     <article className={cn("companion-list", classNames)}>
       <h2 className="text-3xl font-bold">Recent Sessions</h2>
@@ -40,10 +38,59 @@ const CompanionList = ({
           {companions?.map(({ id, subject, name, topic, duration }) => (
             <TableRow key={id}>
               <TableCell>
-                <Link href={`/companions/${id}`}>{subject}</Link>
-                </TableCell>
-                <TableCell>{duration}</TableCell>
-              <TableCell>{name}</TableCell>
+                <Link href={`/companions/${id}`}>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
+                      style={{
+                        background: getSubjectColor(subject),
+                      }}
+                    >
+                      <Image
+                        width={35}
+                        height={35}
+                        src={`./icons/${subject}.svg`}
+                        alt={subject}
+                        priority
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2 ">
+                      <p className="font-bold text-2xl">{name}</p>
+                      <p className="text-lg">{topic}</p>
+                    </div>
+                  </div>
+                </Link>
+              </TableCell>
+              <TableCell>
+                <div className="subject-badge w-fit max-md:hidden">
+                  {subject}
+                </div>
+                <div
+                  className="flex items-center justify-center rounded-lg w-fit p-2 md:hidden"
+                  style={{ background: getSubjectColor(subject) }}
+                >
+                  <Image
+                    width={18}
+                    height={18}
+                    src={`/icons/${subject}.svg`}
+                    alt={subject}
+                  />
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex items-center gap-2 w-full justify-end">
+                  <p className="font-bold">
+                    {duration} <span className="max-md:hidden">mins</span>
+                  </p>
+                  <Image
+                    src="/icons/clock.svg"
+                    width={14}
+                    className="md:hidden"
+                    height={14}
+                    alt="minutes"
+                  />
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
