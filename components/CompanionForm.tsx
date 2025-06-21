@@ -23,6 +23,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { subjects } from "@/constants";
 import { Textarea } from "./ui/textarea";
+import { createCompanion } from "@/lib/actions/companion.action";
+import { useRouter } from "next/navigation";
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "name is required ",
@@ -56,8 +58,16 @@ const CompanionForm = () => {
       duration: 10,
     },
   });
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const router = useRouter();
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const companion = await createCompanion(values);
+    if (companion) {
+      router.push(`/companions/${companion.id}`);
+    } else {
+      router.push("/");
+    }
+    console.log("somthing went wrong when creating a companion");
   };
   return (
     <div>
@@ -70,7 +80,11 @@ const CompanionForm = () => {
               <FormItem>
                 <FormLabel>Companion name</FormLabel>
                 <FormControl>
-                  <Input className="input" placeholder="Enter your companion name" {...field} />
+                  <Input
+                    className="input"
+                    placeholder="Enter your companion name"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -84,10 +98,11 @@ const CompanionForm = () => {
               <FormItem>
                 <FormLabel>Subject</FormLabel>
                 <FormControl>
-                  <Select 
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="w-[180px] input">
                       <SelectValue placeholder="Enter a subject" />
                     </SelectTrigger>
@@ -111,7 +126,7 @@ const CompanionForm = () => {
                 <FormLabel>What should this companion teach?</FormLabel>
                 <FormControl>
                   <Textarea
-                  className="input"
+                    className="input"
                     placeholder="Enter the topic you want to learn - ex: Derivatives"
                     {...field}
                   />
@@ -128,10 +143,11 @@ const CompanionForm = () => {
               <FormItem>
                 <FormLabel>Voice</FormLabel>
                 <FormControl>
-                  <Select 
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="w-[180px] input">
                       <SelectValue placeholder="Voice" />
                     </SelectTrigger>
@@ -153,10 +169,11 @@ const CompanionForm = () => {
               <FormItem>
                 <FormLabel>Style</FormLabel>
                 <FormControl>
-                  <Select 
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="w-[180px] input">
                       <SelectValue placeholder="Style" />
                     </SelectTrigger>

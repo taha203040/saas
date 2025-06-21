@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use Client ";
+"use client";
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -9,35 +9,34 @@ import React from "react";
 const navItems = [
   {
     label: "Home",
-    herf: "/",
+    href: "/",
   },
 
   {
-    label: "signin",
-    herf: "/sign-in",
-  },
-  {
     label: "companions",
-    herf: "/companions",
+    href: "/companions",
   },
   {
     label: "subscribtion",
-    herf: "/subscribtion",
+    href: "/subscribtion",
   },
   {
     label: "my journey",
-    herf: "/my journey",
+    href: "/my-journey",
   },
 ];
 const NavItems = () => {
   const pathname = usePathname();
   return (
     <nav className="flex items-center gap-4">
-      {navItems.map(({ label, herf }) => (
+      {navItems.map(({ label, href }) => (
         <Link
-          href={herf}
+          href={href}
           key={label}
-          className={cn(pathname === herf && "text-primery font-semibold ")}
+          className={cn(
+            "text-gray-500 hover:text-primary transition-colors",
+            pathname === href && "text-primary font-semibold "
+          )}
         >
           {label}
         </Link>

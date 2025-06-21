@@ -1,7 +1,5 @@
 function Newrfc() {
-  return (
-    <div>Newrfc</div>
-  )
+  return <div>Hello to your companions</div>;
 }
 
-export default Newrfc
+export default Newrfc;
