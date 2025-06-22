@@ -6,7 +6,7 @@ interface companionsProps {
   name: string;
   topic: string;
   color: string;
-  duriation: number;
+  duration: number;
   subject: string;
 }
 
@@ -15,7 +15,7 @@ const CompanionsCard = ({
   id,
   name,
   topic,
-  duriation,
+  duration,
   subject,
 }: companionsProps) => {
   return (
@@ -40,7 +40,7 @@ const CompanionsCard = ({
           height={13.5}
           alt="duration"
         />
-        <p className="text-sm"> {duriation} minutes</p>
+        <p className="text-sm"> {duration} minutes</p>
       </div>
       <Link href={`/companions/${id}`} className="w-full">
         <button className="btn-primary w-full justify-center">
