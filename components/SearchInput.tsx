@@ -8,10 +8,10 @@ import { useState } from "react";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@jsmastery/utils";
 const SearchInput = () => {
   // define the paarams
-  const pathname = usePathname(); // 
+  const pathname = usePathname(); //
   const router = useRouter();
   const searchParams = useSearchParams();
-//   const query = searchParams.get("topic") || "";
+  //   const query = searchParams.get("topic") || "";
   const [searchQuery, setsearchQuery] = useState("");
 
   useEffect(() => {
@@ -35,10 +35,11 @@ const SearchInput = () => {
     }, 500);
   }, [searchParams, searchQuery, router, pathname]);
   return (
-    <div className="relative border border-black rounded-lg items-center flex gap-2 px-2 pu-q h-fit">
+    <div className="relative flex items-center gap-2 px-3 py-1  rounded-xl border border-black ">
       <Image src="/icons/search.svg" width={15} height={15} alt="search" />
       <input
-        className="outline-none"
+        style={{ outline: "none" }}
+        className="outline-none border-black"
         type="text"
         placeholder="Search companion ...."
         value={searchQuery}

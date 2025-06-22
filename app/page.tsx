@@ -15,7 +15,7 @@ const Page = () => {
           id="12"
           name="Neura the Brainy Explorer"
           topic="Neural Network of the Brain"
-          duriation={45}
+          duration={45}
           color=" #E5D0FF"
         />
         <CompanionsCard
@@ -23,7 +23,7 @@ const Page = () => {
           id="12"
           name="Countsy the Number Wizard"
           topic="Topic: Derivatives & Integrals"
-          duriation={45}
+          duration={45}
           color="#FFDA6E"
         />
         <CompanionsCard
@@ -31,7 +31,7 @@ const Page = () => {
           id="12"
           name="Verba the Vocabulary Builder"
           topic="Topic: English Literature "
-          duriation={45}
+          duration={45}
           color="#BDE7FF"
         />
       </section>
