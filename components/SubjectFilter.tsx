@@ -47,9 +47,9 @@ export const SubjectFilter = () => {
         <SelectValue placeholder="Select Subject" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="all">All subjects</SelectItem>
+        <SelectItem  value="all">All subjects</SelectItem>
         {subjects.map((subject) => (
-          <SelectItem value={`${subject}`}>{subject}</SelectItem>
+          <SelectItem key={subject}  value={`${subject}`}>{subject}</SelectItem>
         ))}
       </SelectContent>
     </Select>
