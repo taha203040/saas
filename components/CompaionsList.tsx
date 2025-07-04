@@ -15,7 +15,6 @@ import Image from "next/image";
 interface CompanionListProps {
   title: string;
   companions?: Companion[];
-
   classNames?: string;
 }
 const CompanionList = ({
@@ -25,7 +24,7 @@ const CompanionList = ({
 }: CompanionListProps) => {
   return (
     <article className={cn("companion-list", classNames)}>
-      <h2 className="text-3xl font-bold">Recent Sessions</h2>
+      <h2 className="text-3xl font-bold">{title}</h2>
       <Table>
         <TableHeader>
           <TableRow>

@@ -35,12 +35,12 @@ const Newrfc = async ({ params }: CompanionSessionPageProps) => {
               <p className="font-bold text-2xl">{name}</p>
               <div className="subject-badge max:sm:hidden">{subject}</div>
             </div>
-            <p className="text-1xl">{topic}</p>  
+            <p className="text-1xl">{topic}</p>
           </div>
         </div>
         <div className="items-start text-2xl max-md:hidden">{duration}mins</div>
       </article>
-      <CompanionCom {...companion} />
+      <CompanionCom key={id} {...companion} companionId={id} />
     </main>
   );
 };

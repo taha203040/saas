@@ -3,42 +3,39 @@ import CompanionsCard from "../components/CompanionsCard";
 import Cta from "../components/Cta";
 import CompanionList from "../components/CompaionsList";
 import { recentSessions } from "@/constants";
+import {
+  getAllCompanion,
+  getRecentSession,
+} from "@/lib/actions/companion.action";
+import { get } from "http";
+import { getSubjectColor } from "@/lib/utils";
 // import { CompaionsList } from "@/components/CompaionsList";
-const Page = () => {
+const Page = async () => {
+  const companionList = await getAllCompanion({ limit: 3 });
+  const recentSessionCompanions = await getRecentSession(3);
   return (
     <main>
       <h1 className="text-2xl underline">Dashboard</h1>
 
       <section className="home-section">
-        <CompanionsCard
-          subject="Sience"
-          id="12"
-          name="Neura the Brainy Explorer"
-          topic="Neural Network of the Brain"
-          duration={45}
-          color=" #E5D0FF"
-        />
-        <CompanionsCard
-          subject="Sience"
-          id="12"
-          name="Countsy the Number Wizard"
-          topic="Topic: Derivatives & Integrals"
-          duration={45}
-          color="#FFDA6E"
-        />
-        <CompanionsCard
-          subject="Sience"
-          id="12"
-          name="Verba the Vocabulary Builder"
-          topic="Topic: English Literature "
-          duration={45}
-          color="#BDE7FF"
-        />
+        {companionList.map(
+          ({  id, name, subject, topic, duration }) => (
+            <CompanionsCard
+              color={getSubjectColor(subject)}
+              key={id}
+              id={id}
+              name={name}
+              subject={subject}
+              topic={topic}
+              duration={duration}
+            />
+          )
+        )}
       </section>
       <section className="home-section">
         <CompanionList
           title="Some Title"
-          companions={recentSessions}
+          companions={recentSessionCompanions}
           classNames="w-2/3 max-lg:w-full"
         />
         <Cta />
