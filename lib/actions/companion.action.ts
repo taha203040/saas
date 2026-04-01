@@ -1,7 +1,6 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { createSupabaseClient } from "../supabase";
-import { th } from "zod/v4/locales";
 
 export const createCompanion = async (formData: CreateCompanion) => {
   const { userId: authorId } = await auth();
